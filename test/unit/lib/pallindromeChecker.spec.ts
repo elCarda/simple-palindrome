@@ -18,9 +18,12 @@ describe("PalindromeChecker", function () {
         it("Single char is always palindrome", ()=>{
             expect('a').toBeTruthy();
         });
+        it("String that contains only special chars like \"{}/*/*---**/\" is not a palindrome.", ()=>{
+            expect(isPalindrome('{}/*/*---**/')).toBeFalsy();
+        });
     });
 
-    describe("[against dataset]", () => {
+    describe("[against data set]", () => {
         const testDataSet = [
             'Mr. Owl ate my metal worm',
             'Was it a cat I saw?',

@@ -13,7 +13,6 @@ export class InputForm extends React.PureComponent<InputFormProps, void> {
     onSubmit(event:React.SyntheticEvent<any>){
         event.preventDefault();
 
-        //@todo Read input;
         this.props.onSubmit(this.input.value);
     }
 

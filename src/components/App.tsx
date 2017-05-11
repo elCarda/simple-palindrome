@@ -3,6 +3,7 @@ import {PossiblePalindrome} from "../entity/PossiblePalindrome";
 import {InputForm} from "./InputForm";
 import {HistoryItemList} from "./HistoryItemList";
 import {possiblePalindromeFactory} from "../domain/PossiblePalindromeFactory";
+import isPalindrome from "../../lib/palindromeChecker";
 
 interface AppState{
     history:PossiblePalindrome[]
@@ -19,14 +20,19 @@ export class App extends React.Component<null, AppState>{
     }
 
     addPalindrome(input:string){
-        //@todo Validate if it is a palindrome or not
-        const newItem = possiblePalindromeFactory.build(input, false);
-        this.setState({
-            history: [
-                newItem,
-                ...this.state.history.slice(0,9)
-            ]
-        })
+        try {
+            let checkResult = isPalindrome(input);
+            const newItem = possiblePalindromeFactory.build(input, checkResult);
+            this.setState({
+                history: [
+                    newItem,
+                    ...this.state.history.slice(0,9)
+                ]
+            })
+        } catch(e) {
+            console.error(e);
+            alert('Input is not a valid string. Try again please.');
+        }
     }
 
     render(){
