@@ -3,7 +3,9 @@ import {PossiblePalindrome} from "../entity/PossiblePalindrome";
 import {InputForm} from "./InputForm";
 import {HistoryItemList} from "./HistoryItemList";
 import {possiblePalindromeFactory} from "../domain/PossiblePalindromeFactory";
-import isPalindrome from "../../lib/palindromeChecker";
+import isPalindrome from "../service/palindromeChecker";
+import {fetchPalindromeFromUrl} from "../service/locationService";
+import {createLinkToPalindrome} from "../service/locationService";
 
 // import copy from 'copy-to-clipboard'; is not working. No typings for this module.
 const copyToClipboard = require('copy-to-clipboard');
@@ -16,17 +18,20 @@ export class App extends React.Component<null, AppState>{
 
     constructor(props:any) {
         super(props);
+        this.addPalindrome = this.addPalindrome.bind(this);
+        this.copyToClipboard = this.copyToClipboard.bind(this);
         this.state = {
             history: []
         };
-        const match = location.search.match(/\?palindrome=(.+)/);
-        if (match) {
-            const palindromeText = atob(match[1]);
-            let checkResult = isPalindrome(palindromeText);
-            this.state.history.push(possiblePalindromeFactory.build(palindromeText, checkResult));
+        try {
+            const palindromeFromUrl = fetchPalindromeFromUrl(location.search);
+            if (palindromeFromUrl) {
+                this.state.history.push(palindromeFromUrl);
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Url is broken!');
         }
-        this.addPalindrome = this.addPalindrome.bind(this);
-        this.copyToClipboard = this.copyToClipboard.bind(this);
     }
 
     addPalindrome(input:string){
@@ -41,13 +46,19 @@ export class App extends React.Component<null, AppState>{
             })
         } catch(e) {
             console.error(e);
-            alert('Input is not a valid string. Try again please.');
+            alert('Input is not a valid string. Try another please.');
         }
     }
 
-    copyToClipboard(text:string){
-        copyToClipboard('http://localhost:8080/?palindrome=' + btoa(text));
-        alert('Link to this item was copied to the clipboard.');
+    copyToClipboard(text: string) {
+        try {
+            //@todo Location.origin should be safe for latest Chrome and IE 11 but what about others
+            copyToClipboard(createLinkToPalindrome(text, location.origin));
+            alert('Link to this item was copied to the clipboard.');
+        } catch (e) {
+            console.error(e);
+            alert('Link cannot be copied to the clipboard.');
+        }
     }
 
     render(){
@@ -63,4 +74,4 @@ export class App extends React.Component<null, AppState>{
             </main>
         </div>)
     }
-};
+}

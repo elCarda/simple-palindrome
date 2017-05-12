@@ -1,4 +1,4 @@
-import isPalindrome from "../../../lib/palindromeChecker";
+import isPalindrome from "../../../src/service/palindromeChecker";
 
 describe("PalindromeChecker", function () {
     describe("[against edge cases]", ()=>{
@@ -21,7 +21,7 @@ describe("PalindromeChecker", function () {
         it("String that contains only special chars like \"{}/*/*---**/\" is not a palindrome.", ()=>{
             expect(isPalindrome('{}/*/*---**/')).toBeFalsy();
         });
-        //@todo Unignore when we do support unicode properly
+        //@todo Un ignore when we do support unicode properly
         xit("Should support special unicode characters.", function () {
             let palindrome = 'ΝΙΨΟΝ ΑΝΟΜΗΜΑΤΑ ΜΗ ΜΟΝΑΝ ΟΨΙΝ';
             expect(isPalindrome(palindrome)).toBeTruthy(`'${palindrome}' is palindrome`);

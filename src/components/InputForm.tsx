@@ -10,6 +10,7 @@ export class InputForm extends React.PureComponent<InputFormProps, void> {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
     }
+
     onSubmit(event:React.SyntheticEvent<any>){
         event.preventDefault();
         event.stopPropagation();
