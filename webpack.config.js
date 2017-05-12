@@ -15,7 +15,8 @@ module.exports = {
     module: {
         rules: [
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+            { test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3|css|html)$/, loader: "file-loader?name=[path][name].[ext]" }
         ]
     },
 
