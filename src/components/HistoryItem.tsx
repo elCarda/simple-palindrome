@@ -1,33 +1,21 @@
 import * as React from 'react';
 
-// import copy from 'copy-to-clipboard'; No typings for this module
-const copyToClipboard = require('copy-to-clipboard');
-
-
 interface HistoryItemProps {
     text:string;
     isPalindrome:boolean;
+    copyToClipboard: (str: string) => void;
 }
 
-export class HistoryItem extends React.PureComponent<HistoryItemProps, void> {
-    input:HTMLInputElement;
+export const HistoryItem = (props: HistoryItemProps) => {
+    const {text, isPalindrome, copyToClipboard} = props;
+    this.onButtonClick = () => {
+        copyToClipboard(text);
+    };
 
-    constructor(props:HistoryItemProps) {
-        super(props);
-        this.copyToClipboard = this.copyToClipboard.bind(this);
-    }
-    copyToClipboard(){
-        let input = this.props.text;
-        copyToClipboard('http://localhost:8080/?palindrome=' + btoa(input));
-        alert('Link to this item was copied to the clipboard.');
-    }
-    render(){
-        const {text, isPalindrome} = this.props;
-
-        return (<li className="history-item">
+    return (
+        <li className="history-item">
             <span className="sentence">{text}</span>
             <span className={isPalindrome ? 'success' : 'error'}>{isPalindrome ? 'is a palindrome' : 'is not a palindrome'}</span>
-            <button onClick={this.copyToClipboard} >Copy</button>
+            <button onClick={this.onButtonClick}>Copy</button>
         </li>)
-    }
-}
+};
