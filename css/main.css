@@ -1,0 +1,52 @@
+
+html {
+    font-family: "Noto Sans";
+}
+
+ol, ul {
+    list-style: none;
+}
+
+#container {
+    width: 50%;/* @media to support multiple screen sizes */
+    margin: auto;
+    padding: 10px;
+}
+form {
+    margin: auto;
+}
+input, button{
+    padding: 5px;
+    margin:5px;
+}
+
+input[type=text] {
+    width: 80%;
+    float: left;
+    overflow:hidden;
+}
+input[type=submit] {
+    margin-left: calc(80% - 20px);;
+    overflow:hidden;
+}
+
+.history-item {
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+.history-item span {
+    width: 80%;
+    display: block;
+}
+.history-item button {
+    margin-top: 5px;
+}
+.success {
+    color: green;
+}
+
+.sentence {
+    font-size: larger;
+    overflow-wrap: break-word;
+}

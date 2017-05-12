@@ -43,16 +43,12 @@ export class App extends React.Component<null, AppState>{
 
     render(){
         return (<div>
-            <header>Simple palindrome app</header>
+            <header><h1>Simple palindrome app</h1></header>
             <main>
                 <article>
-                    <h1>My article</h1>
+                    <h2>Test your sentence</h2>
                     <InputForm onSubmit={this.addPalindrome}/>
-                    <p>{this.state.history.length} These are the sentences you tried before:</p>
-                    <ul>
-                        <li><span>Example 1</span><a href="javascript:void(0);">Copy link</a></li>
-                        <li>Example 2</li>
-                    </ul>
+                    <p>These are the sentences you tried before:</p>
                     <HistoryItemList items={this.state.history} />
                 </article>
             </main>
