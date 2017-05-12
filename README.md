@@ -1,6 +1,11 @@
 # Simple Palindrome Application 
 This application validates user input and decide if the entered string is a palindrome or not. If you don't know what the palindrome is please follow this [link](https://en.wikipedia.org/wiki/Palindrome).
 
+## Known limitations
+* Application did not support extra unicode characters
+* User input is not limited. There are no guaranties that application will correctly work with extra long strings.
+* User lost history when refreshes the application. (use sessionStorage)
+
 ## Pre-requisities
 1. `node` in version `v6.6.0` or compatible
 2. `npm` in version `3.10.3` or compatible
@@ -27,4 +32,15 @@ Run `npm run webdriver:start` to start up local instance of selenium server. **R
 Run `npm run e2e` to start the end-to-end tests.
 
 ## Todo
-- Update a documentation how to run product. Probably some basic web server is enough. Should run production build.
+- production build tune up (uglify, gzip sources)
+- cover other services by unit tests
+- finish e2e test to test clipboard integration
+- static resources version in the name to prevent caching
+- localization (externalize strings at least)
+- index.hml should be enhanced by some metas
+- UX tune up
+    - replace alerts by some nice toasters
+    - styles for wider screens
+    - mobile UI support
+    - replace native buttons by some nicer
+- limit user input (to avoid megabytes on input)
