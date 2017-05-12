@@ -6,6 +6,9 @@
  *   * sentence is readable in reverse order "aba ba c" <> "Cab aba"
  *   * classification is case insensitive
  *
+ * Limitations:
+ * @todo Unicode is not fully supported yet!
+ *
  * @param {string|String} str Input string
  * @returns {boolean} True if input string follows the rules and is a palindrome
  */
