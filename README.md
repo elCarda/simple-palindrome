@@ -44,3 +44,4 @@ Run `npm run e2e` to start the end-to-end tests.
     - mobile UI support
     - replace native buttons by some nicer
 - limit user input (to avoid megabytes on input)
+- CDN can be a problem (also google fonts)
