@@ -26,7 +26,7 @@ export class HistoryItem extends React.PureComponent<HistoryItemProps, void> {
 
         return (<li className="history-item">
             <span className="sentence">{text}</span>
-            <span className={isPalindrome ? 'success' : 'error'}>{isPalindrome ? ' is palindrome' : 'is not palindrome'}</span>
+            <span className={isPalindrome ? 'success' : 'error'}>{isPalindrome ? 'is a palindrome' : 'is not a palindrome'}</span>
             <button onClick={this.copyToClipboard} >Copy</button>
         </li>)
     }
