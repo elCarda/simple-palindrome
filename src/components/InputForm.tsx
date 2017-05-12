@@ -18,8 +18,8 @@ export class InputForm extends React.PureComponent<InputFormProps, void> {
 
     render(){
         return (<form onSubmit={this.onSubmit}>
-            <input type="text" placeholder="Enter new palindrome..."  ref={(input)=>{this.input = input}}/>
-            <input type="submit"/>
+            <input data-component="new-palindrome-input" type="text" placeholder="Enter new palindrome..."  ref={(input)=>{this.input = input}}/>
+            <input data-component="new-palindrome-submit" type="submit"/>
         </form>)
     }
 }

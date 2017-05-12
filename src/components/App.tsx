@@ -17,6 +17,12 @@ export class App extends React.Component<null, AppState>{
             history: []
         };
         this.addPalindrome = this.addPalindrome.bind(this);
+        const match = location.search.match(/\?palindrome=(.+)/);
+        if (match) {
+            const palindromeText = atob(match[1]);
+            let checkResult = isPalindrome(palindromeText);
+            this.state.history.push(possiblePalindromeFactory.build(palindromeText, checkResult));
+        }
     }
 
     addPalindrome(input:string){

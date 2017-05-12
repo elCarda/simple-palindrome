@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {PossiblePalindrome} from "../entity/PossiblePalindrome";
+import {HistoryItem} from "./HistoryItem";
 
 interface HistoryItemListProps {
     items:PossiblePalindrome[];
 }
 
-export const HistoryItemList = (props:HistoryItemListProps) =>{
+export const HistoryItemList = (props:HistoryItemListProps) => {
     const items = props.items.map((item:PossiblePalindrome)=>{
-        return <li key={item.id}>{item.id}: {item.text} {item.isPalindrome ? ' is palindrome' : 'is not palindrome'}</li>;
+        return <HistoryItem key={item.id} text={item.text} isPalindrome={item.isPalindrome}/>;
     });
 
-    return (<ul>{items}</ul>);
+    return (<ul data-component="history">{items}</ul>);
 }
